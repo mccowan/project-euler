@@ -1,6 +1,7 @@
-package com.github.mccowan.euler;
+package com.github.mccowan.euler.math;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class LazyPrimeGenerator implements Iterable<Long> {
     }
 
     synchronized boolean isPrime(final long primeCandidate) {
-        if (primeCache.contains(primeCandidate)) {
+        if (Collections.binarySearch(primeCache, primeCandidate) >= 0) {
             return true; // todo: lookup faster   
         } else if (primeCandidate < largestPrimeInCache()) {
             return false;
